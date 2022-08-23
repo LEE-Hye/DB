@@ -1,3 +1,4 @@
+--------------------------------------------------------------------------------------
 데이터 흐름도
   -> 데이터 수집 -> 보관(저장) -> 레시피(분석) -> 예측 -> 섭취(서비스)
 
@@ -31,3 +32,53 @@ Not null : 반드시 값이 있어야 한다.
 null : 비어있는 값이다 (저장공간인 블락이 할당되지만 데이터가 비어있는 값이다, 값이 없는게 아니다.)
 
 DBMS -> DB 관리, 데이터 관리, 사용자 요청 처리
+
+-----------------------------------------SQL-------------------------------------------
+Run SQL Command Line 클릭 -> conn hr/hr 입력 (enter) => hr이란 아이디에 접속
+
+SQL * PLUS 가 구동이 됐을 때 전용 메모리 공간을 SQL buffer라 함
+  -> SQL buffer에는 마지막에 실행한 실행 명령문 text가 저장이 되어 있음
+
+오타 났을 경우 ed로 편집 후 저장 한 다음에 '/' 붙여주면 편집된 구문으로 재실행 됨
+
+<SQL 문>
+SELECT    데이터 검색
+
+INSERT    DML(데이터 조작어) 현재 시점 유지
+UPDATE
+DELETE
+MERGE
+
+CREATE    DDL(데이터 정의어)
+ALTER
+DROP
+RENAME
+TRUNCATE
+
+COMMIT    트랜잭션 제어
+ROLLBACK
+SAVEPOINT
+
+GRANT     DCL(데이터 제어어)
+REVOKE
+
+
+
+[departments] : 부서들의 data 테이블
+department_id : 부서 번호(pk)
+department_name : 부서 이름
+manager_id : 부서를 관리하는 관리자(부서장)의 사원 번호
+location_id : 부서가 위치한 도시의 도시(지역) 번호 (FK) -> locations 테이블의 location_id를 참조 중
+
+[employees] : 부서에 근무하는 사원들의 data
+employee_id : 사원번호(PK)
+first_name : 성
+last_name : 이름
+email : 이메일
+phone_number : 폰 번호
+hire_date : 입사한 날짜
+job_id : 현재 사원이 수행하고 있는 업무
+salary : 월 급여
+commission_pct : 보너스
+manager_id : 나를 관리하는 관리자(내 사수)의 사원번호
+department_id : 내가 현재 근무하고 있는 부서 번호
