@@ -48,5 +48,4 @@ select distinct * column alias
   -> 산수 연산은 col + 상수, col + col
   -> NVL(col, 대체값)
 from table_name;
-  ->
 ---------------------------------------------
