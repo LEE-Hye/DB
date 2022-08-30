@@ -1,0 +1,15 @@
+[문제 풀이]
+1. 매니저의 사번 및 그 매니저 밑 사원들 중 최소 급여를 받는 사원의 급여를 출력하시오
+  - 매니저가 없는 사람들은 제외한다.
+  - 최소 급여가 5000 미만인 경우 제외
+  - 급여 기준 역순으로 조회
+  
+=> select manager_id, min(salary)   출력
+   from employees                   table
+   where manager_id is not null     행에 대한 조건 (그룹함수 사용 불가, alias 사용 불가)
+   group by manager_id              그룹화(똑같은 값끼리 모아주는 것)
+   having min(salary) >= 5000       그룹에 대한 조건
+   order by min(salary) desc        정렬
+   
+   
+2. 부서 명, 부서위치ID, 각 부서 별 사원 총 수, 각 부서 별 평균 급여를 출력하되, 부서위치를 오름차순으로 출력하시오
