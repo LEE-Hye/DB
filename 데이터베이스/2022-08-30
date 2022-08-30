@@ -13,3 +13,27 @@
    
    
 2. 부서 명, 부서위치ID, 각 부서 별 사원 총 수, 각 부서 별 평균 급여를 출력하되, 부서위치를 오름차순으로 출력하시오
+
+=> select d.department_name, d.location_id, count(e.employee_id), avg(e.salary) avg_salary
+   from departments d, employees e 
+   where e.department_id = d.department_id
+   group by d.department_name, d.location_id
+   order by d.location_id
+
+   -> 그룹화가 되지 않은 department_name과 location_id를 그룹화 하지 않으면 행으로 받아들여지기 때문에 둘 다 적어줘야 합니다.
+
+
+[서브 쿼리]
+- 서브 쿼리를 괄호로 묶는다.
+- 비교 조건의 오른쪽에 서브 쿼리를 넣는다
+- 서브 쿼리의 order by절에는 안 쓰는게 좋다
+- ★ 단일 행 서브 쿼리에는 단일 행 연산자를 사용하고 다중 행 서브 쿼리에는 다중 행 연산자를 사용합니다
+
+1. 내가 뭘 모르는지 찾자(abel의 급여)
+2. 모르는 값을 서브쿼리를 통해 abel의 급여를 찾자
+3. abel의 급여를 찾기 위해 서브쿼리의 select list절에 어떤 컬럼을 명시할것인지 결정(select salary)
+4. 서브쿼리가 실행이 돼서 결과를 출력하면 그 결과를 메인 쿼리의 어떤 컬럼이 받을것인지 결정(where salary)
+5. 서브쿼리의 값과 메인 쿼리의 값을 비교하는 연산자를 결정
+    -> 서브쿼리의 결과가 하나인 경우에는 =, >과 같은 단일 연산자를 결과가 다수일 경우에는 in과 같은 복수연산자를 사용
+6. 서브쿼리의 컬럼과 받아주는 메인쿼리의 컬럼의 데이터타입은 반드시 같아야 함. 컬럼 이름은 달라도 상관없음
+    -> 대부분의 서브쿼리의 컬럼과 메인쿼리의 컬럼의 이름이 같음
