@@ -56,13 +56,22 @@ DDL/DCL -> 문장 하나가 1개 T / 실행과 동시에 auto commit
   => 행 단위
   => 이 구문으로는 한 번에 한 행만 추가된다.
   => insert into table_name
-     values (삽입할 데이터 값 명시) : all column data 전부 삽입
+     values (삽입할 데이터 값 명시); : all column data 전부 삽입
   => insert into table_name(column_name)
-     values (삽입할 데이터 값 명시) : 명시된 column에만 data 삽입
+     values (삽입할 데이터 값 명시); : 명시된 column에만 data 삽입
   -> into절에 명시된 컬럼의 개수와 순서, 데이터 타입과 길이에 맞게 values의 입력 데이터가 1:1로 매칭
+  
+1. column 무결성(컬럼 타입)
+2. 제약조건 무결성(PK, FK)
   
   
 [delete]
   => 행 단위
+  => delete from 테이블명
+     (where 조건);
 [update]
   => 열 단위
+  => update 테이블명
+     set 속성명 = 데이터
+     (where 조건);
+
