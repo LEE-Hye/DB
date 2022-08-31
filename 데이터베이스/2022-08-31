@@ -1,13 +1,5 @@
 [문제 풀이]
-1.
-  => select employee_id, last_name, salary
-     from employees
-     where (department_id,salary) in (select department_id, max(salary)
-                                      from employees
-                                      group by department_id)
-     -> 멀티플을 이용해서 서브쿼리 사용
-     
-2. 이름이 DAVIES인 사람보다 후에 고용된 사원들의 이름 및 고용일자를 출력하시오. 고용일자를 역순으로 출력하시오.
+1. 이름이 DAVIES인 사람보다 후에 고용된 사원들의 이름 및 고용일자를 출력하시오. 고용일자를 역순으로 출력하시오.
   => select last_name, hire_date
      from employees
      where hire_date > (select hire_date
@@ -17,17 +9,18 @@
      -> where절 비교할 때 테이블에 명시된 컬럼 형식을 잘 보고 적기
      -> Davies가 여러명일 경우 > 가 아닌 >any를 적어야 함
 
-3. King을 매니저로 두고 있는 모든 사원들의 이름 및 급여를 출력하시오.
+2. King을 매니저로 두고 있는 모든 사원들의 이름 및 급여를 출력하시오.
   => select last_name, salary, manager_id
      from employees
      where manager_id in (select employee_id
      from employees
      where last_name = 'King')
      
- 4. 회사 전체 평균 급여보다 더 많이 받는 사원들 중 이름에 u가 있는 사원들이 근무하는 부서에서 근무하는 사원들의 사번, 이름 및 급여를 출력하시오
+3. 회사 전체 평균 급여보다 더 많이 받는 사원들 중 이름에 u가 있는 사원들이 근무하는 부서에서 근무하는 사원들의 사번, 이름 및 급여를 출력하시오
   => select employee_id, last_name, salary
      from employees
      where department_id in ( select department_id
-     from employees
-     where salary > (select avg(salary) from employees) and
-     last_name like '%u%')
+                              from employees
+                              where salary > (select avg(salary) 
+                                              from employees) 
+                              and last_name like '%u%')
