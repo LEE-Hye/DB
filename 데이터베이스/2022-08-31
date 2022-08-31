@@ -1,0 +1,18 @@
+[문제 풀이]
+1.
+  => select employee_id, last_name, salary
+     from employees
+     where (department_id,salary) in (select department_id, max(salary)
+                                      from employees
+                                      group by department_id)
+     -> 멀티플을 이용해서 서브쿼리 사용
+     
+2. 이름이 DAVIES인 사람보다 후에 고용된 사원들의 이름 및 고용일자를 출력하시오. 고용일자를 역순으로 출력하시오.
+  => select last_name, hire_date
+     from employees
+     where hire_date > (select hire_date
+                        from employees
+                        where last_name = 'Davies')
+                        order by hire_date desc
+     -> where절 비교할 때 테이블에 명시된 컬럼 형식을 잘 보고 적기
+     -> Davies가 여러명일 경우 > 가 아닌 >any를 적어야 함
