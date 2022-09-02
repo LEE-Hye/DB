@@ -2,6 +2,7 @@
 - primary key
 - not null
 - foreign key
+- check
 
 create table dept(
   did number(3) constraint dept_did_pk primary key,    => 제약조건 방법1. column level
@@ -21,3 +22,16 @@ constraint 제약조건이름 제약조건유형(제약 조건을 부여할 컬�
   constraint 제약조건이름 제약조건유형(제약조건을 부여할 컬럼 이름)
   references 참조대상테이블이름(참조대상컬럼이름)  => 참조대상 컬럼 이름은 pk, uk제약 조건이 설치가 된 컬럼만 참조할 수 있음
                                       => 참조할 컬럼과 참조 대상 컬럼은 타입과 길이가 같아야 한다.
+                                      
+- on delete casecade : 부모테이블과 참조 테이블에서 해당 행과 컬럼이 같이 삭제가 됨
+- on delete set null : 부모 테이블에서 지워지고 참조 테이블에선 데이터만 null로 변경이 이루어짐
+
+- check는
+  constraint 제약조건이름 check(조건문)
+  ex) 0,1만을 선택하는 조건을 주고 싶으면 (컬럼 in(0,1))
+
+- save 파일명.sql : C:\oraclexe\app\oracle\product\11.2.0\server\bin 스크립트 파일로 이 경로에 저장할 수 있는데
+                  여러개의 명령어를 저장할 수 있다.
+                 => 실행은 @파일명.sql
+                 
+                 
